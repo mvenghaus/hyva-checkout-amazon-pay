@@ -4,7 +4,14 @@
 >
     <event name="hyva_checkout_init_after">
         <observer name="set_shipping_address_from_amazon"
-                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\SetShippingAddressFromAmazon"
+                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\AdoptAmazonInformation"
+        />
+    </event>
+
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="disable_amazon_pay_checkout"
+                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\DisableAmazonPayCheckout"
+
         />
     </event>
 </config>

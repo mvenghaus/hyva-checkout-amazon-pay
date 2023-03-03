@@ -8,4 +8,8 @@
             </argument>
         </arguments>
     </type>
+    <type name="Hyva\Checkout\ViewModel\Checkout\Payment\Method">
+        <plugin name="only_amazon_pay_if_selected"
+                type="MVenghaus\HyvaCheckoutAmazonPay\Plugin\Hyva\Checkout\ViewModel\Checkout\Payment\MethodPlugin"/>
+    </type>
 </config>
