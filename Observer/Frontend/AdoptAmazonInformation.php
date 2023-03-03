@@ -28,7 +28,6 @@ class AdoptAmazonInformation implements ObserverInterface
         if (!empty($amazonCheckoutSessionId)) {
             $this->checkoutSession->setAmazonCheckoutSessionId($amazonCheckoutSessionId);
 
-
             $amazonShippingAddress = $this->amazonCheckoutSessionManagement->getShippingAddress($amazonCheckoutSessionId);
             $quote->getShippingAddress()->addData(current($amazonShippingAddress));
             $quote->getBillingAddress()->addData(current($amazonShippingAddress));

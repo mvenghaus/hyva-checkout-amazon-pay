@@ -2,8 +2,14 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
 >
+    <event name="shortcut_buttons_container">
+        <observer name="amazon_pay_shortcut"
+                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\AddAmazonPayShortcut"
+        />
+    </event>
+
     <event name="hyva_checkout_init_after">
-        <observer name="set_shipping_address_from_amazon"
+        <observer name="adopt_amazon_information"
                   instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\AdoptAmazonInformation"
         />
     </event>
@@ -11,7 +17,6 @@
     <event name="checkout_onepage_controller_success_action">
         <observer name="disable_amazon_pay_checkout"
                   instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\DisableAmazonPayCheckout"
-
         />
     </event>
 </config>

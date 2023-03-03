@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use MVenghaus\HyvaCheckoutAmazonPay\ViewModel\AmazonPayCheckoutViewModel;
+
+/** @var ViewModelRegistry $viewModels */
+
+$amazonPayCheckoutViewModel = $viewModels->require(AmazonPayCheckoutViewModel::class);
+?>
+<?php if ($amazonPayCheckoutViewModel->isAmazonPayCheckout()): ?>
+    <div class="mb-8">
+        <button type="button"
+                class="btn btn-primary"
+                wire:click="backToStandard"
+
+        ><?= __('Back to standard checkout') ?></button>
+
+        <button type="button"
+                class="btn btn-secondary"
+                wire:click="changeAmazonInformation"
+
+        ><?= __('Change Address or Payment on Amazon') ?></button>
+    </div>
+<?php else: ?>
+    <div></div>
+<?php endif; ?>
