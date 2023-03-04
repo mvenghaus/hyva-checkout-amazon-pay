@@ -16,12 +16,14 @@ use Magento\Framework\UrlInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\QuoteRepository;
 use MVenghaus\HyvaCheckoutAmazonPay\Model\AddressManagement;
+use MVenghaus\HyvaCheckoutAmazonPay\Model\AmazonPayCheckout;
 
 class ProcessAmazonInformation implements ObserverInterface
 {
     public function __construct(
         private readonly RequestInterface $request,
         private readonly UrlInterface $url,
+        private readonly AmazonPayCheckout $amazonPayCheckout,
         private readonly CheckoutSession $checkoutSession,
         private readonly CustomerAddressRepositoryInterface $customerAddressRepository,
         private readonly QuoteRepository $quoteRepository,
@@ -37,7 +39,7 @@ class ProcessAmazonInformation implements ObserverInterface
         if (!empty($amazonCheckoutSessionId)) {
             $quote = $this->checkoutSession->getQuote();
 
-            $this->checkoutSession->setAmazonPayCheckoutSessionId($amazonCheckoutSessionId);
+            $this->amazonPayCheckout->setCheckoutSessionId($amazonCheckoutSessionId);
 
             $this->processAddresses($quote, $amazonCheckoutSessionId);
             $this->processPayment($quote);

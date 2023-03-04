@@ -29,6 +29,11 @@ class AmazonPayCheckout
         return $this->amazonCheckoutSessionManagement->getConfig();
     }
 
+    public function setCheckoutSessionId(string $checkoutSessionId): void
+    {
+        $this->checkoutSession->setAmazonPayCheckoutSessionId($checkoutSessionId);
+    }
+
     public function getCheckoutSessionId(): ?string
     {
         return $this->checkoutSession->getAmazonPayCheckoutSessionId();
