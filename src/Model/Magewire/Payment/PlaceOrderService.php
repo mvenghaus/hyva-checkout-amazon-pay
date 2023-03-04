@@ -8,12 +8,12 @@ use Amazon\Pay\Model\Adapter\AmazonPayAdapter;
 use Hyva\Checkout\Model\Magewire\Payment\AbstractPlaceOrderService;
 use Magento\Quote\Api\CartManagementInterface;
 use Magento\Quote\Model\Quote;
-use MVenghaus\HyvaCheckoutAmazonPay\Model\AmazonCheckout;
+use MVenghaus\HyvaCheckoutAmazonPay\Model\AmazonPayCheckout;
 
 class PlaceOrderService extends AbstractPlaceOrderService
 {
     public function __construct(
-        private readonly AmazonCheckout $amazonCheckout,
+        private readonly AmazonPayCheckout $amazonCheckout,
         private readonly AmazonPayAdapter $amazonPayAdapter,
         CartManagementInterface $cartManagement
     ) {
@@ -26,7 +26,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
 
         $response = $this->amazonPayAdapter->updateCheckoutSession(
             $quote,
-            $this->amazonCheckout->getAmazonCheckoutSessionId(),
+            $this->amazonCheckout->getCheckoutSessionId(),
             $paymentIntent
         );
 
@@ -40,6 +40,6 @@ class PlaceOrderService extends AbstractPlaceOrderService
 
     public function getRedirectUrl(Quote $quote, ?int $orderId = null): string
     {
-        return 'https://payments.amazon.de/checkout/processing?amazonCheckoutSessionId=' . $this->amazonCheckout->getAmazonCheckoutSessionId();
+        return 'https://payments.amazon.de/checkout/processing?amazonCheckoutSessionId=' . $this->amazonCheckout->getCheckoutSessionId();
     }
 }

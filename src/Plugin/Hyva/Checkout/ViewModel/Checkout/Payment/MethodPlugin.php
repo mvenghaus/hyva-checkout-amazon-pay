@@ -6,12 +6,12 @@ namespace MVenghaus\HyvaCheckoutAmazonPay\Plugin\Hyva\Checkout\ViewModel\Checkou
 
 use Amazon\Pay\Gateway\Config\Config;
 use Hyva\Checkout\ViewModel\Checkout\Payment\Method;
-use MVenghaus\HyvaCheckoutAmazonPay\Model\AmazonCheckout;
+use MVenghaus\HyvaCheckoutAmazonPay\Model\AmazonPayCheckout;
 
 class MethodPlugin
 {
     public function __construct(
-        private readonly AmazonCheckout $amazonPayCheckout
+        private readonly AmazonPayCheckout $amazonPayCheckout
     ) {
     }
 
@@ -21,7 +21,7 @@ class MethodPlugin
             return null;
         }
 
-        if ($this->amazonPayCheckout->isAmazonCheckout()) {
+        if ($this->amazonPayCheckout->isCheckoutActive()) {
             return array_filter($result, fn($payment) => $payment->getCode() === Config::CODE);
         }
 

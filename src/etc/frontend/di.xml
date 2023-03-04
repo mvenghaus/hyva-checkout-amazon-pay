@@ -4,7 +4,9 @@
     <type name="Hyva\Checkout\Model\Magewire\Payment\PlaceOrderServiceProvider">
         <arguments>
             <argument name="placeOrderServiceList" xsi:type="array">
-                <item name="amazon_payment_v2" xsi:type="object">MVenghaus\HyvaCheckoutAmazonPay\Model\Magewire\Payment\PlaceOrderService</item>
+                <item name="amazon_payment_v2" xsi:type="object">
+                    MVenghaus\HyvaCheckoutAmazonPay\Model\Magewire\Payment\PlaceOrderService
+                </item>
             </argument>
         </arguments>
     </type>

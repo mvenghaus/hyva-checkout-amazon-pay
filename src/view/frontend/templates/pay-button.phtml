@@ -2,22 +2,29 @@
 
 declare(strict_types=1);
 
-use MVenghaus\HyvaCheckoutAmazonPay\Block\Shortcut;
+use Hyva\Theme\Model\ViewModelRegistry;
+use MVenghaus\HyvaCheckoutAmazonPay\Block\PayButton;
+use MVenghaus\HyvaCheckoutAmazonPay\ViewModel\AmazonPayCheckoutViewModel;
+use MVenghaus\HyvaCheckoutAmazonPay\ViewModel\AmazonPayRendererViewModel;
 
-/** @var Shortcut $block */
-$elementId = 'amazon_pay_shortcut_' . uniqid();
+/** @var PayButton $block */
+/** @var ViewModelRegistry $viewModels */
+
+$amazonPayCheckoutViewModel = $viewModels->require(AmazonPayCheckoutViewModel::class);
+$amazonPayRendererViewModel = $viewModels->require(AmazonPayRendererViewModel::class);
+
+$elementId = 'amazon_pay_button_' . uniqid();
 
 ?>
-
-<div x-data="initAmazonPayShortcut()"
+<div x-data="initAmazonPayButton()"
      x-init="init()"
      id="<?= $elementId ?>"
 ></div>
 
-<script>
-    function initAmazonPayShortcut() {
+<script <?= $amazonPayRendererViewModel->renderScriptAttributes() ?>>
+    function initAmazonPayButton() {
         return {
-            config: <?=json_encode($block->getCheckoutSessionManagement()->getConfig())?>,
+            config: <?= json_encode($amazonPayCheckoutViewModel->getCheckoutSessionConfig()) ?>,
 
             init() {
                 if (this.hasCartItems()) {

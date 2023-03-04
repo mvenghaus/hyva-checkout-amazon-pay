@@ -9,7 +9,7 @@ use MVenghaus\HyvaCheckoutAmazonPay\ViewModel\AmazonPayCheckoutViewModel;
 
 $amazonPayCheckoutViewModel = $viewModels->require(AmazonPayCheckoutViewModel::class);
 ?>
-<?php if ($amazonPayCheckoutViewModel->isAmazonPayCheckout()): ?>
+<?php if ($amazonPayCheckoutViewModel->isCheckoutActive()): ?>
     <div class="mb-8">
         <button type="button"
                 class="btn btn-primary"

@@ -3,14 +3,14 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
 >
     <event name="shortcut_buttons_container">
-        <observer name="amazon_pay_shortcut"
-                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\AddAmazonPayShortcut"
+        <observer name="amazon_pay_button"
+                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\AddAmazonPayButton"
         />
     </event>
 
-    <event name="hyva_checkout_init_after">
-        <observer name="adopt_amazon_information"
-                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\AdoptAmazonInformation"
+    <event name="controller_action_postdispatch_hyva_checkout_index_index">
+        <observer name="process_amazon_information"
+                  instance="MVenghaus\HyvaCheckoutAmazonPay\Observer\Frontend\ProcessAmazonInformation"
         />
     </event>
 
