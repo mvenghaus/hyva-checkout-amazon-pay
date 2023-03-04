@@ -29,7 +29,7 @@ class AmazonPayCheckout
         return $this->amazonCheckoutSessionManagement->getConfig();
     }
 
-    public function setCheckoutSessionId(string $checkoutSessionId): void
+    public function setCheckoutSessionId(?string $checkoutSessionId): void
     {
         $this->checkoutSession->setAmazonPayCheckoutSessionId($checkoutSessionId);
     }
@@ -46,14 +46,15 @@ class AmazonPayCheckout
 
     public function deactivateCheckout(): void
     {
-        $this->checkoutSession->setAmazonPayCheckoutSessionId(null);
+        $this->setCheckoutSessionId(null);
+        $this->setProcessingUrl(null);
 
         $quote = $this->checkoutSession->getQuote();
         $quote->getPayment()->setMethod('');
         $this->quoteRepository->save($quote);
     }
 
-    public function setProcessingUrl(string $processingUrl): void
+    public function setProcessingUrl(?string $processingUrl): void
     {
         $this->checkoutSession->setAmazonPayProcessingUrl($processingUrl);
     }
