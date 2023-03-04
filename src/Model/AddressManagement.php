@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace MVenghaus\HyvaCheckoutAmazonPay\Model;
 
 use Magento\Customer\Api\Data\AddressInterfaceFactory as CustomerAddressInterfaceFactory;
+use Magento\Customer\Api\Data\RegionInterfaceFactory;
 use Magento\Customer\Model\Data\Address as CustomerAddress;
 use Magento\Customer\Model\Data\Customer;
 
 class AddressManagement
 {
     public function __construct(
-        private readonly CustomerAddressInterfaceFactory $customerAddressFactory
+        private readonly CustomerAddressInterfaceFactory $customerAddressFactory,
+        private readonly RegionInterfaceFactory $regionFactory
     ) {
     }
 
@@ -25,6 +27,7 @@ class AddressManagement
             ->setStreet($amazonData['street'] ?? '')
             ->setPostcode($amazonData['postcode'] ?? '')
             ->setCity($amazonData['city'] ?? '')
+            ->setRegion($this->regionFactory->create()->setRegion($amazonData['region']))
             ->setRegionId((int)($amazonData['region_id'] ?? ''))
             ->setCountryId($amazonData['country_id'] ?? '')
             ->setTelephone($amazonData['telephone'] ?? '');
@@ -53,7 +56,6 @@ class AddressManagement
             'street' => implode('', $address->getStreet()),
             'postcode' => (string)$address->getPostcode(),
             'city' => (string)$address->getCity(),
-            'region_id' => (string)$address->getRegionId(),
             'country_id' => (string)$address->getCountryId(),
             'company' => (string)$address->getCompany(),
             'telephone' => (string)$address->getTelephone()
