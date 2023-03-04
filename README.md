@@ -11,7 +11,6 @@ Hyvä Themes Compatibility module for Amazon_Pay
 
 ## Todo
 - Amazon Login
-- Region Address Mapping
 - Handle incomplete addresses from amazon
 - More error handling
 - Tests
