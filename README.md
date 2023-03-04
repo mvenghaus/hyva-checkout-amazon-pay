@@ -16,9 +16,6 @@ Hyvä Themes Compatibility module for Amazon_Pay
 - Tests
 - ...
 
-## Known Issues
-- sometimes when you change the address afterwards the next button is not clickable
-
 ## Installation
 
 **!! You need at least the RC version of Hyva Checkout (you need to buy it) !!**
