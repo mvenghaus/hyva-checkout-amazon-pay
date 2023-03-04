@@ -10,7 +10,6 @@ Hyvä Themes Compatibility module for Amazon_Pay
 - GDPR (Cookie Consent) Handling - add extra attributes to script tag via config (currently not editable via admin)
 
 ## Todo
-- Handle customers who have already an account with the same email in shop 
 - Amazon Login
 - Region Address Mapping
 - More error handling
