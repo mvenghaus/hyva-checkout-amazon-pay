@@ -25,9 +25,10 @@ class AddressManagement
             ->setStreet($amazonData['street'] ?? '')
             ->setPostcode($amazonData['postcode'] ?? '')
             ->setCity($amazonData['city'] ?? '')
+            ->setRegionId((int)($amazonData['region_id'] ?? ''))
             ->setCountryId($amazonData['country_id'] ?? '')
-            ->setTelephone($amazonData['telephone'] ?? '')
-            ->setRegionId((int)($amazonData['region_id'] ?? ''));
+            ->setTelephone($amazonData['telephone'] ?? '');
+
     }
 
     public function searchCustomerAddress(Customer $customer, CustomerAddress $address): ?CustomerAddress
@@ -38,6 +39,7 @@ class AddressManagement
                 implode('', $customerAddress->getStreet()) === implode('', $address->getStreet()) &&
                 (string)$customerAddress->getPostcode() === (string)$address->getPostcode() &&
                 (string)$customerAddress->getCity() === (string)$address->getCity() &&
+                (string)$customerAddress->getRegionId() === (string)$address->getRegionId() &&
                 (string)$customerAddress->getCountryId() === (string)$address->getCountryId() &&
                 (string)$customerAddress->getCompany() === (string)$address->getCompany() &&
                 (string)$customerAddress->getTelephone() === (string)$address->getTelephone()

@@ -23,4 +23,9 @@ class AmazonPayCheckoutViewModel implements ArgumentInterface
     {
         return $this->amazonCheckout->isCheckoutActive();
     }
+
+    public function getStaticUrl(): string
+    {
+        return $this->amazonCheckout->getStaticUrl();
+    }
 }

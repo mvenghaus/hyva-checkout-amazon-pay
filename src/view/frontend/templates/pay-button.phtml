@@ -80,7 +80,7 @@ $elementId = 'amazon_pay_button_' . uniqid();
                     }
 
                     script = document.createElement('script');
-                    script.src = 'https://static-eu.payments-amazon.com/checkout.js';
+                    script.src = '<?= $amazonPayCheckoutViewModel->getStaticUrl() ?>checkout.js';
                     script.id = 'amazon-pay-script';
 
                     script.addEventListener("load", () => {

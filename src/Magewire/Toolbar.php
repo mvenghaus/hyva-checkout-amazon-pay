@@ -23,6 +23,6 @@ class Toolbar extends Component
 
     public function changeAmazonInformation(): void
     {
-        $this->redirect($this->amazonPayCheckout->getCheckoutChangeUrl());
+        $this->redirect($this->amazonPayCheckout->getChangeUrl());
     }
 }

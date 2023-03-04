@@ -53,8 +53,32 @@ class AmazonPayCheckout
         $this->quoteRepository->save($quote);
     }
 
-    public function getCheckoutChangeUrl(): string
+    public function setProcessingUrl(string $processingUrl): void
     {
-        return 'https://payments.amazon.de/checkout?amazonCheckoutSessionId=' . $this->getCheckoutSessionId();
+        $this->checkoutSession->setAmazonPayProcessingUrl($processingUrl);
+    }
+
+    public function getProcessingUrl(): string
+    {
+        return $this->checkoutSession->getAmazonPayProcessingUrl();
+    }
+
+    public function getChangeUrl(): string
+    {
+        return str_replace('/processing', '', $this->getProcessingUrl());
+    }
+
+    public function getStaticUrl(): string
+    {
+        $mapping = [
+            'de' => 'eu',
+            'uk' => 'eu',
+            'jp' => 'fe',
+            'us' => 'na'
+        ];
+
+        $domainRegion = $mapping[$this->amazonConfig->getPaymentRegion()];
+
+        return "https://static-{$domainRegion}.payments-amazon.com/";
     }
 }

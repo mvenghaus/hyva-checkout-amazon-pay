@@ -40,6 +40,9 @@ class ProcessAmazonInformation implements ObserverInterface
             $quote = $this->checkoutSession->getQuote();
 
             $this->amazonPayCheckout->setCheckoutSessionId($amazonCheckoutSessionId);
+            $this->amazonPayCheckout->setProcessingUrl(
+                $this->amazonCheckoutSessionManagement->updateCheckoutSession($amazonCheckoutSessionId)
+            );
 
             $this->processAddresses($quote, $amazonCheckoutSessionId);
             $this->processPayment($quote);
