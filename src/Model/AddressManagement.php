@@ -31,6 +31,9 @@ class AddressManagement
 
     }
 
+    /**
+     * Better than before but I don't like ;)
+     */
     public function searchCustomerAddress(Customer $customer, CustomerAddress $address): ?CustomerAddress
     {
         foreach ($customer->getAddresses() as $customerAddress) {
@@ -42,9 +45,6 @@ class AddressManagement
         return null;
     }
 
-    /**
-     * Better than before but I don't like ;)
-     */
     private function createCompareAddress(CustomerAddress $address): array
     {
         return [
