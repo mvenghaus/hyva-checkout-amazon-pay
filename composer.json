@@ -4,7 +4,7 @@
   "type": "magento2-module",
   "require": {
     "magento/framework": "*",
-    "hyva-themes/checkout-core": "^1.0.0-beta2",
+    "hyva-themes/magento2-hyva-checkout": "^1.0",
     "amzn/amazon-pay-magento-2-module": "*"
   },
   "authors": [{
