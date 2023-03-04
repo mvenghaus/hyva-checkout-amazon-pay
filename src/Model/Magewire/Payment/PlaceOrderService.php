@@ -24,7 +24,7 @@ class PlaceOrderService extends AbstractPlaceOrderService
     {
         $paymentIntent = AmazonPayAdapter::PAYMENT_INTENT_AUTHORIZE;
 
-        $response = $this->amazonPayAdapter->updateCheckoutSession(
+        $this->amazonPayAdapter->updateCheckoutSession(
             $quote,
             $this->amazonCheckout->getCheckoutSessionId(),
             $paymentIntent
@@ -40,6 +40,6 @@ class PlaceOrderService extends AbstractPlaceOrderService
 
     public function getRedirectUrl(Quote $quote, ?int $orderId = null): string
     {
-        return 'https://payments.amazon.de/checkout/processing?amazonCheckoutSessionId=' . $this->amazonCheckout->getCheckoutSessionId();
+        return $this->amazonCheckout->getProcessingUrl();
     }
 }
