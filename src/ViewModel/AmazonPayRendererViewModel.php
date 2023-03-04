@@ -6,7 +6,6 @@ namespace MVenghaus\HyvaCheckoutAmazonPay\ViewModel;
 
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\LayoutInterface;
 use MVenghaus\HyvaCheckoutAmazonPay\Block\PayButton;
 use MVenghaus\HyvaCheckoutAmazonPay\Helper\Config\RendererConfig;
