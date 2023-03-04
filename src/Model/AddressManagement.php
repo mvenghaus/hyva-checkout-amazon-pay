@@ -34,20 +34,29 @@ class AddressManagement
     public function searchCustomerAddress(Customer $customer, CustomerAddress $address): ?CustomerAddress
     {
         foreach ($customer->getAddresses() as $customerAddress) {
-            if ((string)$customerAddress->getFirstname() === (string)$address->getFirstname() &&
-                (string)$customerAddress->getLastname() === (string)$address->getLastname() &&
-                implode('', $customerAddress->getStreet()) === implode('', $address->getStreet()) &&
-                (string)$customerAddress->getPostcode() === (string)$address->getPostcode() &&
-                (string)$customerAddress->getCity() === (string)$address->getCity() &&
-                (string)$customerAddress->getRegionId() === (string)$address->getRegionId() &&
-                (string)$customerAddress->getCountryId() === (string)$address->getCountryId() &&
-                (string)$customerAddress->getCompany() === (string)$address->getCompany() &&
-                (string)$customerAddress->getTelephone() === (string)$address->getTelephone()
-            ) {
+            if ($this->createCompareAddress($customerAddress) === $this->createCompareAddress($address)) {
                 return $customerAddress;
             }
         }
 
         return null;
+    }
+
+    /**
+     * Better than before but I don't like ;)
+     */
+    private function createCompareAddress(CustomerAddress $address): array
+    {
+        return [
+            'firstname' => (string)$address->getFirstname(),
+            'lastname' => (string)$address->getLastname(),
+            'street' => implode('', $address->getStreet()),
+            'postcode' => (string)$address->getPostcode(),
+            'city' => (string)$address->getCity(),
+            'region_id' => (string)$address->getRegionId(),
+            'country_id' => (string)$address->getCountryId(),
+            'company' => (string)$address->getCompany(),
+            'telephone' => (string)$address->getTelephone()
+        ];
     }
 }
